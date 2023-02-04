@@ -1,5 +1,9 @@
 import socket
+import json
 
+# Vide => 0
+# Serveur => 1
+# Client => 2
 
 class Serveur:
     def __init__(self, port):
@@ -15,4 +19,18 @@ PARTIE DISPONIBLE sur
 =====================
         ''')
         (sclient,adclient) = self.socket.accept()
-        print(adclient)
+        self.grille = json.loads(sclient.recv(1024).decode())
+        self.affichage()
+        self.cocher(sclient)
+    
+    def cocher(self, sclient):
+        choix = input('Entrer la case a jouer (ex : a2): ')
+        coup = (ord(choix[0].lower())-97, int(choix[1])-1)
+        if self.grille[coup[0]][coup[1]] == 0:
+            self.grille[coup[0]][coup[1]] = 1
+            sclient.send(str(self.grille).encode())
+        else:
+            self.cocher()
+
+    def affichage(self):
+        print(self.grille)

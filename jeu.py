@@ -20,8 +20,7 @@ class Jeu:
             self.serveur()
         elif entree == '2':
             print('''
-Entrer l'IP de la partie : 
-''')
+Entrer l'IP de la partie : ''')
             ip = input('')
             self.client(ip)
         else:
