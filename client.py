@@ -1,5 +1,6 @@
 from socket import socket
 import json
+from tools import affichage
 
 # Vide => 0
 # Serveur => 1
@@ -66,4 +67,4 @@ TU AS PERDU !
 
 
     def affichage(self):
-        print(self.grille)
+        print(affichage(self.grille))

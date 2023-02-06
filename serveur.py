@@ -1,5 +1,6 @@
 import socket
 import json
+from tools import affichage
 
 # Vide => 0
 # Serveur => 1
@@ -49,7 +50,7 @@ TU AS PERDU !
             self.cocher()
 
     def affichage(self):
-        print(self.grille)
+        print(affichage(self.grille))
     
     def hasWon(self) -> bool:
         grille = self.grille
