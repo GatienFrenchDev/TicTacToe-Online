@@ -11,7 +11,7 @@ class Client:
     def __init__(self, ip):
         self.socket = socket()
         self.socket.connect((ip, 8080))
-        self.grille = [[0]*3]*3
+        self.grille = [[0]*3,[0]*3,[0]*3]
         self.socket.send(str(self.grille).encode())
         self.main()
 
@@ -26,8 +26,9 @@ TU AS PERDU !
 =============
                 """)
                 return
-            self.affichage()
+            print(affichage(self.grille))
             self.cocher()
+            print(affichage(self.grille))
             self.socket.send(str(self.grille).encode())
         self.socket.send("end".encode())
 
@@ -65,6 +66,3 @@ TU AS PERDU !
         
         return False
 
-
-    def affichage(self):
-        print(affichage(self.grille))

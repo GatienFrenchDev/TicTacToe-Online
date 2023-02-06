@@ -1,6 +1,7 @@
 import os
 
 def affichage(grille):
+    valeur = [[0]*3, [0]*3, [0]*3]
     os.system('cls' if os.name=='nt' else 'clear')
     dico = {
             0 : " ",
@@ -11,17 +12,18 @@ def affichage(grille):
 
     for i in range(len(grille)):
         for j in range(len(grille[i])):
-            grille[i][j] = dico[grille[i][j]]
+            valeur[i][j] = dico[grille[i][j]]
 
     return f"""
-    a     b     c
-        |     |     
-    1  {grille[0][0]}  |  {grille[0][1]}  |  {grille[0][2]}  
-    _____|_____|_____
-        |     |     
-    2  {grille[1][0]}  |  {grille[1][1]}  |  {grille[1][2]}
-    _____|_____|_____
-        |     |     
-    3  {grille[2][0]}  |  {grille[2][1]}  |  {grille[2][2]}  
-        |     |     
+   a     b     c
+      |     |     
+1  {valeur[0][0]}  |  {valeur[0][1]}  |  {valeur[0][1]}  
+ _____|_____|_____
+      |     |     
+2  {valeur[1][0]}  |  {valeur[1][1]}  |  {valeur[1][2]}  
+ _____|_____|_____
+      |     |     
+3  {valeur[2][0]}  |  {valeur[2][1]}  |  {valeur[2][2]}  
+      |     |     
+
         """

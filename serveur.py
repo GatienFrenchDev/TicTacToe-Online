@@ -2,6 +2,7 @@ import socket
 import json
 from tools import affichage
 
+
 # Vide => 0
 # Serveur => 1
 # Client => 2
@@ -9,10 +10,13 @@ from tools import affichage
 class Serveur:
     def __init__(self, port):
         self.port = port
-        self.ip = socket.gethostbyname(socket.gethostname())
+        s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8",80))
+        self.ip = s.getsockname()[0]
+        s.close()
         self.socket = socket.socket()
         self.socket.bind((self.ip, port))
-        self.grille = [[0]*3]*3
+        self.grille = [[0]*3, [0]*3, [0]*3]
         self.socket.listen()
         print(f'''
 =====================
@@ -35,8 +39,9 @@ TU AS PERDU !
 =============
                 """)
                 return
-            self.affichage()
+            print(affichage(self.grille))
             self.cocher()
+            print(affichage(self.grille))
             self.sclient.send(str(self.grille).encode())
         self.sclient.send("end".encode())
         
@@ -47,10 +52,9 @@ TU AS PERDU !
         if self.grille[coup[0]][coup[1]] == 0:
             self.grille[coup[0]][coup[1]] = 1
         else:
+            print("fre")
             self.cocher()
 
-    def affichage(self):
-        print(affichage(self.grille))
     
     def hasWon(self) -> bool:
         grille = self.grille
