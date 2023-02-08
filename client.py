@@ -13,6 +13,7 @@ class Client:
         self.socket.connect((ip, 8080))
         self.grille = [[0]*3,[0]*3,[0]*3]
         self.socket.send(str(self.grille).encode())
+        print(affichage(self.grille))
         self.main()
 
     def main(self):
