@@ -1,6 +1,9 @@
 import os
 
 def affichage(grille):
+    """
+    Le dessin de la grille provient de : https://codegolf.stackexchange.com/questions/95629/print-this-tic-tac-toe-board
+    """
     valeur = [[0]*3, [0]*3, [0]*3]
     os.system('cls' if os.name=='nt' else 'clear')
     dico = {
